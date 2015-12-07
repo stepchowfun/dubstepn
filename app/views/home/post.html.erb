@@ -1,0 +1,11 @@
+<%
+  # instance variables:
+  #   @post            post
+  #   @previous        [post, nil]
+  #   @next            [post, nil]
+%>
+
+<% content_for :title, @post.title + ' | Stephan Boyer' %>
+<% content_for :description, @post.summary %>
+
+<%= render :partial => 'post', :locals => { :post => @post, :previous_post => @previous, :next_post => @next, :comments_mode => :full, :show_date => true, :title_link => true, :social_media => true } %>

@@ -1,0 +1,104 @@
+<%
+  # locals:
+  #   post            Post
+  #   previous_post   Post | nil
+  #   next_post       Post | nil
+  #   comments_mode   :full | :count | nil
+  #   show_date       boolean
+  #   title_link      boolean
+  #   social_media    boolean
+%>
+
+<div class="article">
+  <% if post.css != '' %>
+    <style type="text/css">
+      <%= raw(post.css) %>
+    </style>
+  <% end %>
+
+  <h2>
+    <% if title_link %>
+      <a href="<%= post.canonical_uri %>"><%= raw(post.title_html) %></a>
+      <% if !post.is_public %>
+        <span class="muted"><i class="fa fa-eye-slash"></i></span>
+      <% end %>
+      <% if is_logged_in %>
+        <span class="muted"><a href="/admin/edit_post/<%= post.id -%>"><i class="fa fa-edit"></i></a></span>
+      <% end %>
+    <% else %>
+      <%= raw(post.title_html) %>
+      <% if !post.is_public %>
+        <span class="muted"><i class="fa fa-eye-slash"></i></span>
+      <% end %>
+      <% if is_logged_in %>
+        <span class="muted"><a href="/admin/edit_post/<%= post.id -%>"><i class="fa fa-edit"></i></a></span>
+      <% end %>
+    <% end %>
+  </h2>
+
+  <% if show_date %>
+    <div class="p muted">
+      <i class="fa fa-fw fa-calendar"></i> <%= post.created_at.strftime('%B %e, %Y') %>.
+    </div>
+  <% end %>
+
+  <%= raw(post.content_html) %>
+
+  <% if Rails.env.production? && !is_logged_in && social_media %>
+    <div class="p social-media-share">
+      <div class="social-media-link">
+        <div class="fb-like" data-href="<%= normalize_path(post.canonical_uri, true) -%>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+      </div>
+      <div class="social-media-link">
+        <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="<%= normalize_path(post.canonical_uri, true) -%>" data-text="<%= post.title -%>">Tweet</a>
+      </div>
+      <div class="social-media-link">
+        <div class="g-plus" data-action="share" data-annotation="none" data-href="<%= normalize_path(post.canonical_uri, true) -%>"></div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if previous_post || next_post %>
+    <div class="row p">
+      <% if previous_post %>
+        <div class="span6 previous-post">
+          <a href="<%= previous_post.canonical_uri -%>"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;<%= raw(previous_post.title_html) -%></a>
+        </div>
+      <% end %>
+      <% if next_post %>
+        <div class="span6 next-post <%= if previous_post then '' else 'offset6' end -%>">
+          <a href="<%= next_post.canonical_uri -%>"><%= raw(next_post.title_html) -%>&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if comments_mode == :full %>
+    <% if Rails.env.production? && !is_logged_in %>
+      <div>
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_config = function () {
+          this.page.url = <%= normalize_path(post.canonical_uri, true).to_json.html_safe -%>;
+          this.page.identifier = <%= post.id.to_json.html_safe -%>;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//<%= APP_DISQUS_SHORTNAME -%>.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      </div>
+    <% end %>
+  <% elsif comments_mode == :count %>
+    <div class="p"><a href="<%= normalize_path(post.canonical_uri, true) -%>#disqus_thread">0 Comments</a></div>
+  <% end %>
+
+  <% if post.javascript != '' %>
+    <script type="text/javascript">
+      <%= raw(post.javascript) %>
+    </script>
+  <% end %>
+</div>

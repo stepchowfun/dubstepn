@@ -1,0 +1,502 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+/*
+ *  Global constants
+ */
+
+$color: #333;
+$color-light: #888;
+$color-muted: #aaa;
+$color-anchor: #ac498f;
+$color-anchor-hover: #c23b00;
+$color-selection: #ffa0fa;
+$color-light-background: #f3f3f3;
+$input-height: 36px;
+$separator-height: 2px;
+$footer-height: $separator-height + 64px;
+$stack-width: 900px;
+
+/* Helper classes */
+
+.clearfix {
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.muted {
+  color: $color-muted;
+}
+
+.right {
+  text-align: right;
+}
+
+.full-width {
+  width: 100%;
+  /* NOTE: home.js.coffee automatically makes YouTube videos full-width and preserves their aspect ratio */
+}
+
+@media (min-width: ($stack-width / 2)) {
+  .small-phone-visible {
+    display: none;
+  }
+}
+
+/* Body */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $color;
+}
+
+#footer-fix-container {
+  min-height: 100%;
+  position: relative;
+}
+
+::selection {
+  background: $color-selection; /* Safari */
+}
+
+::-moz-selection {
+  background: $color-selection; /* Firefox */
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+  word-wrap: break-word;
+}
+
+/* Anchors */
+
+a {
+  color: $color-anchor;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-anchor-hover;
+  }
+}
+
+a.tag {
+  display: inline-block;
+  padding: 0px 4px;
+  background-color: $color-anchor;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+  line-height: 1.6;
+
+  &:hover {
+    background-color: $color-anchor-hover;
+    text-decoration: none;
+  }
+}
+
+/* Block-level elements */
+
+.p, ul, ol, form, table {
+  margin: 16px 0;
+}
+
+ul, ol {
+  p, .p {
+    margin: 8px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: "Bitter", "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  margin: 16px 0;
+
+  a {
+    font-weight: 300;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+h2 {
+  font-size: 2em;
+  line-height: 1.2;
+
+  a {
+    color: inherit;
+  }
+}
+
+h3 {
+  font-size: 1.5em;
+  margin-top: 48px;
+}
+
+h4 {
+  font-size: 1em;
+  margin-top: 32px;
+  color: $color-light;
+}
+
+code, pre, .monospace {
+  font-family: "Droid Sans Mono", "Monaco", "Lucida Console", "Terminal", sans-serif;
+  font-size: 0.9em;
+}
+
+code {
+  white-space: pre-wrap;
+  word-wrap: normal;
+}
+
+pre {
+  margin: 16px 0;
+  padding: 16px 24px;
+  background-color: $color-light-background;
+  white-space: pre;
+  word-wrap: normal;
+  overflow: auto;
+  max-height: 600px;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 4px solid $color-light-background;
+  padding-left: 20px;
+  margin: 0;
+  color: $color-light;
+}
+
+.notice, .error {
+  padding: 16px 24px;
+  background-color: #f3f3f3;
+  margin: 32px 0;
+
+  .close-container {
+    float: right;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        color: $color-anchor-hover;
+      }
+    }
+  }
+}
+
+ul {
+  list-style-type: square;
+}
+
+ul, ol {
+  padding-left: 25px;
+}
+
+label {
+  cursor: pointer;
+}
+
+ul.pagination {
+  $page-link-width:  36px;
+  $page-link-height: 32px;
+
+  padding: 0;
+  margin: 24px auto;
+  max-width: 100%;
+
+  li {
+    display: block;
+    width: $page-link-width;
+    height: $page-link-height;
+    float: left;
+    text-align: center;
+    margin: 8px 2px 8px 0;
+    background-color: #f3f3f3;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.disabled a, &.disabled span {
+      color: #999;
+    }
+
+    &.active a, &.active span {
+      color: #999;
+    }
+
+    a, span {
+      display: block;
+      width: $page-link-width;
+      height: $page-link-height;
+      line-height: $page-link-height;
+    }
+  }
+}
+
+/* Inline elements */
+
+strong {
+  font-weight: 600;
+}
+
+.article {
+  .p {
+    img, video {
+      display: inline-block;
+      vertical-align: middle;
+      border-width: 0;
+      width: 100%;
+    }
+  }
+}
+
+iframe {
+  border: none;
+}
+
+input[type=submit], input[type=text], input[type=password], textarea, .button-link {
+  display: inline-block;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+input[type=text], input[type=password], textarea {
+  border: 1px solid #ddd;
+  padding: 7px 10px;
+  color: inherit;
+  background-color: #fff;
+}
+
+input[type=submit], .button-link {
+  border-style: none;
+  padding: 0 16px;
+  color: #fff;
+  background-color: $color-anchor;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+  font-weight: 600;
+  line-height: $input-height;
+
+  &:hover {
+    background-color: $color-anchor-hover;
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+input, .button-link {
+  height: $input-height;
+  vertical-align: middle;
+}
+
+textarea {
+  display: inline-block;
+  resize: vertical;
+}
+
+textarea:focus, input:focus {
+  outline: 0;
+}
+
+code {
+  display: inline-block;
+  padding: 0 4px;
+  background-color: $color-light-background;
+}
+
+form {
+  display: inline;
+}
+
+/* Header */
+
+#header {
+  $header-height: 42px;
+  $header-link-border-width: 2px;
+  $header-link-border-color: #eee;
+  line-height: $header-height;
+
+  #title {
+    @media (max-width: ($stack-width - 1)) {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1em;
+      font-weight: 400;
+      text-transform: inherit;
+      line-height: inherit;
+      margin: $header-link-border-width 0;
+
+      a {
+        font-weight: 600;
+        display: inline-block;
+        color: inherit;
+        &:hover {
+          color: $color-anchor-hover;
+          text-decoration: none;
+        }
+
+        &#title-link {
+          &:hover {
+            color: $color-anchor-hover;
+          }
+        }
+      }
+    }
+  }
+
+  #nav {
+    text-align: right;
+    font-size: 0.85em;
+    font-weight: 400;
+
+    @media (max-width: ($stack-width - 1)) {
+      text-align: center;
+    }
+
+    a {
+      display: inline-block;
+      color: inherit;
+      padding: 0 16px;
+      margin: $header-link-border-width 0;
+
+      @media (max-width: ($stack-width - 1)) {
+        & {
+          padding: 0 5px;
+        }
+      }
+
+      &:hover {
+        color: $color-anchor-hover;
+        text-decoration: none;
+      }
+    }
+
+    a.active {
+      border-bottom: $header-link-border-width solid $header-link-border-color;
+      margin-bottom: 0;
+
+      &:hover {
+        color: $color-anchor-hover;
+      }
+    }
+  }
+}
+
+/* Separators */
+
+div.page-separator {
+  background-color: #f3f3f3;
+  height: $separator-height;
+}
+
+div.post-separator {
+  background-color: #f3f3f3;
+  height: 2px;
+}
+
+/* Articles */
+
+#content {
+  padding-bottom: $footer-height;
+  overflow-x: auto;
+
+  .article {
+    margin: 48px 0 48px 0;
+
+    .MathJax_Display {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .previous-post {
+      text-align: left;
+    }
+
+    .next-post {
+      text-align: right;
+    }
+
+    .social-media-share {
+      .social-media-link {
+        display: inline-block;
+        height: 20px !important;
+        line-height: 20px;
+        vertical-align: middle;
+      }
+    }
+
+    @media (max-width: ($stack-width - 1)) {
+      .previous-post, .next-post {
+        text-align: center;
+      }
+    }
+  }
+}
+
+/* Footer */
+
+#footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  color: $color-muted;
+  text-align: center;
+
+  #footer .p {
+    line-height: $footer-height - $separator-height;
+    margin: 0;
+  }
+}

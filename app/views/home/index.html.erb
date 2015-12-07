@@ -1,0 +1,68 @@
+<%
+  # instance variables:
+  #   @posts     [Post]
+  #   @tag       Tag
+  #   @page      Fixnum
+  #   @pages     Fixnum
+%>
+
+<% content_for :head do %>
+  <% if @tag.name == 'home' %>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="<%= normalize_path('/rss', true) -%>" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="<%= normalize_path('/atom', true) -%>" />
+  <% else %>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="<%= normalize_path("/rss/#{ @tag.name }", true) -%>" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="<%= normalize_path("/atom/#{ @tag.name }", true) -%>" />
+  <% end %>
+<% end %>
+
+<% if @tag.name == 'home' %>
+  <% content_for :title, 'Stephan Boyer' %>
+  <% content_for :description, APP_DESCRIPTION %>
+<% else %>
+  <% content_for :title, @tag.name.capitalize + ' | Stephan Boyer' %>
+  <% content_for :description, APP_DESCRIPTION + '  Category: ' + @tag.name + '.' %>
+
+  <% content_for :nav do %>
+    &raquo; <a href="/<%= @tag.name %>"><%= @tag.name.capitalize %></a>
+  <% end %>
+<% end %>
+
+<% @posts.each_with_index do |post, index| %>
+  <% if index > 0%>
+    <div class="post-separator"> </div>
+  <% end %>
+  <%= render :partial => "post", :locals => { :post => post, :previous_post => nil, :next_post => nil, :comments_mode => :count, :show_date => true, :title_link => true, :social_media => true } %>
+<% end %>
+
+<ul class="pagination clearfix" style="width: <%= (36 + 2) * (@pages + 2) - 2 -%>px;">
+  <% if @page > 1 %>
+    <% if @tag.name == 'home' %>
+      <li><a href="/">&laquo;</a></li>
+    <% else %>
+      <li><a href="/<%= @tag.name -%>">&laquo;</a></li>
+    <% end %>
+  <% else %>
+    <li class="disabled"><span>&laquo;</span></li>
+  <% end %>
+  <% for page in 1..@pages %>
+    <% if page == @page %>
+      <li class="active"><span><%= page %></span></li>
+    <% else %>
+      <% if page == 1 %>
+        <% if @tag.name == 'home' %>
+          <li><a href="/"><%= page %></a></li>
+        <% else %>
+          <li><a href="/<%= @tag.name -%>"><%= page %></a></li>
+        <% end %>
+      <% else %>
+        <li><a href="/<%= @tag.name -%>/<%= page -%>"><%= page %></a></li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if @page < @pages %>
+    <li><a href="/<%= @tag.name -%>/<%= @pages -%>">&raquo;</a></li>
+  <% else %>
+    <li class="disabled"><span>&raquo;</span></li>
+  <% end %>
+</ul>

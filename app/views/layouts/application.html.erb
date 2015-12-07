@@ -1,0 +1,109 @@
+<%
+  # instance variables:
+  #   @tag_name       String | nil
+  #   @is_root        boolean
+%><!DOCTYPE html>
+<html lang="<%= APP_LANGUAGE -%>" data-ng-app>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="eqFNycnDb09VSzKM3LDBrgPul10nHG57fUnLBvz6sOQ" />
+    <title><%= content_for :title %></title>
+    <% if (content_for :description) != '' %>
+      <meta name="description" content="<%= content_for :description %>" />
+    <% end %>
+    <meta property="fb:admins" content="1477269179" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="//fonts.googleapis.com/css?family=Source%20Sans%20Pro%3A400%2C600%2C400italic%7CBitter%3A400%2C400italic" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= content_for :head %>
+  </head>
+  <body data-ng-cloak class="ng-cloak">
+    <div id="footer-fix-container">
+      <div id="header">
+        <div class="container">
+          <div class="row">
+            <div id="title" class="span4">
+              <h1>
+                <a href="/" id="title-link">Stephan Boyer</a>
+                <%= content_for :nav %>
+              </h1>
+            </div>
+            <div id="nav" class="span8">
+              <a <%= if (defined? @tag_name) && @tag_name == 'home' then 'class="active"'.html_safe else '' end -%> href="/">Home</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'theory' then 'class="active"'.html_safe else '' end -%> href="/theory">Theory</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'projects' then 'class="active"'.html_safe else '' end -%> href="/projects">Projects</a><span class="hidden">
+              </span><br class="small-phone-visible" /><a <%= if (defined? @tag_name) && @tag_name == 'music' then 'class="active"'.html_safe else '' end -%> href="/music">Music</a><span class="hidden">
+              </span><a href="/about">About</a><span class="hidden">
+              </span><% if is_logged_in -%><%= form_tag('/admin/logout', :method => 'post') do -%><a <%= if params[:action].to_sym == :admin then 'class="active"'.html_safe else '' end -%> href="/admin/index">Admin</a><span class="hidden">
+              </span><a href="#" onclick="$(this).parent().submit(); return false;">Logout</a><% end -%><% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-separator"> </div>
+
+      <div class="container" id="content">
+        <div class="row">
+          <div class="span6 offset3">
+            <% if flash[:notice] %>
+              <div class="notice clearfix" data-ng-init="show_notice=true;" data-ng-show="show_notice">
+                <i class="fa fa-bell-o"></i> <%= flash[:notice].html_safe %> <div class="close-container"><a href="#" data-ng-click="show_notice=false; $event.stopPropagation(); $event.preventDefault();"><i class="fa fa-check-square-o"></i></a></div>
+              </div>
+            <% end %>
+            <% if flash[:error] %>
+              <div class="error clearfix" data-ng-init="show_error=true;" data-ng-show="show_error">
+                <i class="fa fa-exclamation-circle"></i> <%= flash[:error].html_safe %> <div class="close-container"><a href="#" data-ng-click="show_error=false; $event.stopPropagation(); $event.preventDefault();"><i class="fa fa-check-square-o"></i></a></div>
+              </div>
+            <% end %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer-container">
+        <div class="page-separator"> </div>
+        <div class="container" id="footer">
+          <div class="p">&copy; <%= Time.new.year %> Stephan Boyer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mathjax -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <% if Rails.env.production? && !is_logged_in %>
+      <!-- Disqus -->
+      <script id="dsq-count-scr" src="//stephanboyer.disqus.com/count.js" async></script>
+
+      <!-- Google Analytics -->
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34278795-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+
+      <!-- Facebook -->
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Twitter -->
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+      <!-- Google Plus -->
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <% end %>
+  </body>
+</html>

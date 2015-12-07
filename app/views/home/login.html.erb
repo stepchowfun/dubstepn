@@ -1,0 +1,12 @@
+<% content_for :title, 'Login | Stephan Boyer' %>
+
+<div class="article">
+  <h2>This page requires administrative privileges.</h2>
+  <%= form_tag('/admin/login', :method => 'post') do %>
+    <div class="p">Please enter your credentials:</div>
+    <div class="p">
+      <input type="password" placeholder="Password" name="password" id="password-field" />
+      <input type="submit" value="Log In" />
+    </div>
+  <% end %>
+</div>
