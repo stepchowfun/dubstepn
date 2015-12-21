@@ -66,11 +66,11 @@ Rails.application.routes.draw do
 
   # syndication
   get "/rss/home" => redirect("/rss"), :format => false
-  get "/rss" => "home#feed", :format => false
-  get "/rss/:tag" => "home#feed", :format => false
+  get "/rss" => "home#feed", :type => :rss, :format => false
+  get "/rss/:tag" => "home#feed", :type => :rss, :format => false
   get "/atom/home" => redirect("/atom"), :format => false
-  get "/atom" => "home#feed", :format => false
-  get "/atom/:tag" => "home#feed", :format => false
+  get "/atom" => "home#feed", :type => :atom, :format => false
+  get "/atom/:tag" => "home#feed", :type => :atom, :format => false
 
   # admin panel
   get "/admin/index" => "home#admin", :format => false
