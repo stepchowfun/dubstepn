@@ -351,6 +351,8 @@ form {
   $header-height: 48px;
   line-height: $header-height;
   background-color: #fafafa;
+  color: #666;
+  font-size: 0.85em;
 
   #title {
     @media (max-width: ($stack-width - 1)) {
@@ -358,7 +360,7 @@ form {
     }
 
     h1 {
-      font-size: 1em;
+      font-size: inherit;
       font-weight: 400;
       text-transform: inherit;
       line-height: inherit;
@@ -384,7 +386,6 @@ form {
 
   #nav {
     text-align: right;
-    font-size: 0.85em;
     font-weight: 400;
 
     @media (max-width: ($stack-width - 1)) {
@@ -475,6 +476,7 @@ div.post-separator {
   color: $color-muted;
   text-align: center;
   background-color: #fafafa;
+  font-size: 0.85em;
 
   #footer .p {
     line-height: $footer-height - $separator-height;
