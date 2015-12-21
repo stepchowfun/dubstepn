@@ -45,7 +45,7 @@
 
       <div class="container" id="content">
         <div class="row">
-          <div class="span6 offset3">
+          <div class="span12">
             <% if flash[:notice] %>
               <div class="notice clearfix" data-ng-init="show_notice=true;" data-ng-show="show_notice">
                 <i class="fa fa-bell-o"></i> <%= flash[:notice].html_safe %> <div class="close-container"><a href="#" data-ng-click="show_notice=false; $event.stopPropagation(); $event.preventDefault();"><i class="fa fa-check-square-o"></i></a></div>

@@ -1,24 +1,60 @@
+/* ----------------- */
+/* Responsive Styles */
+/* ----------------- */
+
+$min-width-tablet: 768px;
+$min-width-desktop: 980px;
+
+/* Phones */
+@media (max-width: ($min-width-tablet - 1)) {
+  .phone-hidden, .tablet-visible, .desktop-visible {
+    display: none;
+  }
+}
+
+/* Tablets */
+@media (min-width: $min-width-tablet) and (max-width: ($min-width-desktop - 1)) {
+  .phone-visible, .tablet-hidden, .desktop-visible {
+    display: none;
+  }
+}
+
+/* Desktops */
+@media (min-width: $min-width-desktop) {
+  .phone-visible, .tablet-visible, .desktop-hidden {
+    display: none;
+  }
+}
+
 /* --------------- */
 /* Fluid container */
 /* --------------- */
 
 /* A container (and its padding) will not grow larger than this width. */
-$container-max-width: 1280px;
+$container-max-width: 768px;
 
-/* The horizontal padding around containers. */
-$container-gutter: 20px;
+/* The horizontal padding around containers on medium to large screens. */
+$container-gutter-non-phone: 32px;
+
+/* The horizontal padding around containers on small screens. */
+$container-gutter-phone: 20px;
 
 /* Add the "container" class to a block element (e.g., a div) to create a fluid container. */
 .container {
   width: 100%;
   max-width: $container-max-width;
-  padding-left:  $container-gutter;
-  padding-right: $container-gutter;
+  padding-left:  $container-gutter-non-phone;
+  padding-right: $container-gutter-non-phone;
   -webkit-box-sizing: border-box;
   -moz-box-sizing:    border-box;
   box-sizing:         border-box;
   margin-left:  auto;
   margin-right: auto;
+
+  @media (max-width: ($min-width-tablet - 1)) {
+    padding-left:  $container-gutter-phone;
+    padding-right: $container-gutter-phone;
+  }
 }
 
 /* ---------------------- */
@@ -153,33 +189,5 @@ $stack-width: 768px;
         }
       }
     }
-  }
-}
-
-/* ----------------- */
-/* Responsive Styles */
-/* ----------------- */
-
-$min-width-tablet: 768px;
-$min-width-desktop: 980px;
-
-/* Phones */
-@media (max-width: ($min-width-tablet - 1)) {
-  .phone-hidden, .tablet-visible, .desktop-visible {
-    display: none;
-  }
-}
-
-/* Tablets */
-@media (min-width: $min-width-tablet) and (max-width: ($min-width-desktop - 1)) {
-  .phone-visible, .tablet-hidden, .desktop-visible {
-    display: none;
-  }
-}
-
-/* Desktops */
-@media (min-width: $min-width-desktop) {
-  .phone-visible, .tablet-visible, .desktop-hidden {
-    display: none;
   }
 }

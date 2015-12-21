@@ -394,10 +394,14 @@ form {
       display: inline-block;
       color: inherit;
       padding: 0 16px;
+      position: relative;
+      top: 0;
+      left: 16px;
 
       @media (max-width: ($stack-width - 1)) {
         & {
           padding: 0 5px;
+          left: 0px;
         }
       }
 
