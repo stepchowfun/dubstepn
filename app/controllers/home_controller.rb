@@ -6,7 +6,7 @@ require 'open-uri'
 
 class HomeController < ApplicationController
   # whitelist of actions that are viewable to the public
-  public_actions = [:catch_all, :posts_for_tag, :post, :resume, :robots, :sitemap, :feed, :login, :login_action]
+  public_actions = [:catch_all, :posts_for_tag, :post, :about, :resume, :robots, :sitemap, :feed, :login, :login_action]
   before_action :require_login, :except => public_actions
 
   # set the caching headers
@@ -52,21 +52,19 @@ class HomeController < ApplicationController
 
   # render a page for a particular post
   def post
-    @logged_in = is_logged_in
-    @post = nil
-    @previous = nil
-    @next = nil
-    begin
-      @post = Post.find(params[:post_id].to_i)
-      home_tag = Tag.where(:name => 'home')
-      @previous = home_tag.posts.where('sort_id < ? AND is_public = ?', @post.sort_id, true).order('sort_id DESC').first
-      @next = home_tag.posts.where('sort_id > ? AND is_public = ?', @post.sort_id, true).order('sort_id ASC').first
-    rescue
+    post = Post.find(params[:post_id].to_i)
+    return render_404 if !post || (!post.is_public && !is_logged_in)
+    if request.fullpath != post.canonical_uri
+      return smart_redirect(post.canonical_uri, true)
     end
-    return render_404 if !@post || (!@post.is_public && !@logged_in)
-    if request.fullpath != @post.canonical_uri
-      return smart_redirect(@post.canonical_uri, true)
-    end
+    return render_post(post)
+  end
+
+  # about page
+  def about
+    post = Tag.where(:name => 'about').first.posts.first
+    return render_404 if !post || (!post.is_public && !is_logged_in)
+    return render_post(post)
   end
 
   # render my resume
@@ -308,6 +306,21 @@ private
     raise if !(permanent.instance_of?(TrueClass) || permanent.instance_of?(FalseClass))
 
     redirect_to normalize_path(path), :status => (permanent ? 301 : 302)
+  end
+
+  # render a page with a single post
+  # post :: Post
+  def render_post(post)
+    @post = post
+    if post.tags.any? { |tag| tag.name == 'home' }
+      home_tag = Tag.where(:name => 'home').first
+      @previous = home_tag.posts.where('sort_id < ? AND is_public = ?', @post.sort_id, true).order('sort_id DESC').first
+      @next = home_tag.posts.where('sort_id > ? AND is_public = ?', @post.sort_id, true).order('sort_id ASC').first
+    else
+      @previous = nil
+      @next = nil
+    end
+    return render 'post'
   end
 
   # render a page with the posts for a tag
