@@ -78,7 +78,6 @@ class HomeController < ApplicationController
     robots = "User-agent: *\r\n"
     robots << "Sitemap: #{normalize_path('/sitemap', true)}\r\n"
     robots << "Disallow: /admin/\r\n"
-    robots << "Disallow: /resume\r\n"
     robots << "Allow: /\r\n"
     return render :text => robots, :content_type => Mime::TEXT
   end
