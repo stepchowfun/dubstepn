@@ -350,6 +350,7 @@ form {
 #header {
   $header-height: 48px;
   line-height: $header-height;
+  background-color: #fafafa;
 
   #title {
     @media (max-width: ($stack-width - 1)) {
@@ -473,6 +474,7 @@ div.post-separator {
   height: $footer-height;
   color: $color-muted;
   text-align: center;
+  background-color: #fafafa;
 
   #footer .p {
     line-height: $footer-height - $separator-height;
