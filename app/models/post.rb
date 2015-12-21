@@ -46,6 +46,11 @@ class Post < ActiveRecord::Base
     return normalize_path("/post/#{ self.id.to_s }/#{ URI::encode(self.title.downcase.gsub(/[\"\']/, '').gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-').gsub(/\A-/, '').gsub(/-\Z/, '')) }")
   end
 
+  # get the URI for an uncached version of this post (admin-only)
+  def no_cache_uri
+    return normalize_path("/post/#{ self.id.to_s }/#{ URI::encode(self.title.downcase.gsub(/[\"\']/, '').gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-').gsub(/\A-/, '').gsub(/-\Z/, '')) }?no-cache=1")
+  end
+
   # fill in the title_html and content_html fields
   def markdown!
     self.title_html = markdown(self.title).scan(/^(\<\s*div[^>]*\>)(.*)$/)[0][1].scan(/^(.*)(\<\s*\/\s*div[^>]*\>)$/)[0][0]

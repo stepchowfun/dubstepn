@@ -6,7 +6,7 @@
 <% content_for :title, 'Admin | Stephan Boyer' %>
 
 <div class="article">
-  <h2><a href="<%= @post.canonical_uri -%>"><%= raw(@post.title_html) -%></a></h2>
+  <h2><a href="<%= @post.no_cache_uri -%>"><%= raw(@post.title_html) -%></a></h2>
 
   <%= form_tag("/admin/edit_post", :method => "post") do %>
     <input type="hidden" name="post_id" value="<%= @post.id %>" />

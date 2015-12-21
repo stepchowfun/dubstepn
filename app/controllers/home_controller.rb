@@ -54,7 +54,7 @@ class HomeController < ApplicationController
   def post
     post = Post.find(params[:post_id].to_i)
     return render_404 if !post || (!post.is_public && !is_logged_in)
-    if request.fullpath != post.canonical_uri
+    if request.fullpath != post.canonical_uri && !is_logged_in
       return smart_redirect(post.canonical_uri, true)
     end
     return render_post(post)
@@ -265,7 +265,7 @@ private
   # cache for 1 hour
   # used as a before action
   def set_caching_headers
-    if is_logged_in || !request.get?
+    if is_logged_in || !request.get? || params['no-cache']
       disable_caching
     else
       enable_caching
@@ -274,13 +274,7 @@ private
 
   # return whether the user is logged in
   def is_logged_in
-    if session[:login_time] == nil
-      return false
-    end
-    if session[:login_time].to_datetime.advance(:hours => 12) < DateTime.now
-      return false
-    end
-    return true
+    return !!(session[:login_time] && session[:login_time].to_datetime.advance(:hours => 12) >= DateTime.now)
   end
 
   # make sure the user is logged in before continuing
