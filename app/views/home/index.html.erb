@@ -35,34 +35,36 @@
   <%= render :partial => "post", :locals => { :post => post, :previous_post => nil, :next_post => nil, :comments_mode => :count, :show_date => true, :title_link => true, :social_media => true } %>
 <% end %>
 
-<ul class="pagination clearfix" style="width: <%= (36 + 2) * (@pages + 2) - 2 -%>px;">
-  <% if @page > 1 %>
-    <% if @tag.name == 'home' %>
-      <li><a href="/">&laquo;</a></li>
-    <% else %>
-      <li><a href="/<%= @tag.name -%>">&laquo;</a></li>
-    <% end %>
-  <% else %>
-    <li class="disabled"><span>&laquo;</span></li>
-  <% end %>
-  <% for page in 1..@pages %>
-    <% if page == @page %>
-      <li class="active"><span><%= page %></span></li>
-    <% else %>
-      <% if page == 1 %>
-        <% if @tag.name == 'home' %>
-          <li><a href="/"><%= page %></a></li>
-        <% else %>
-          <li><a href="/<%= @tag.name -%>"><%= page %></a></li>
-        <% end %>
+<% if @pages > 1 %>
+  <ul class="pagination clearfix" style="width: <%= (36 + 2) * (@pages + 2) - 2 -%>px;">
+    <% if @page > 1 %>
+      <% if @tag.name == 'home' %>
+        <li><a href="/">&laquo;</a></li>
       <% else %>
-        <li><a href="/<%= @tag.name -%>/<%= page -%>"><%= page %></a></li>
+        <li><a href="/<%= @tag.name -%>">&laquo;</a></li>
+      <% end %>
+    <% else %>
+      <li class="disabled"><span>&laquo;</span></li>
+    <% end %>
+    <% for page in 1..@pages %>
+      <% if page == @page %>
+        <li class="active"><span><%= page %></span></li>
+      <% else %>
+        <% if page == 1 %>
+          <% if @tag.name == 'home' %>
+            <li><a href="/"><%= page %></a></li>
+          <% else %>
+            <li><a href="/<%= @tag.name -%>"><%= page %></a></li>
+          <% end %>
+        <% else %>
+          <li><a href="/<%= @tag.name -%>/<%= page -%>"><%= page %></a></li>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <% if @page < @pages %>
-    <li><a href="/<%= @tag.name -%>/<%= @pages -%>">&raquo;</a></li>
-  <% else %>
-    <li class="disabled"><span>&raquo;</span></li>
-  <% end %>
-</ul>
+    <% if @page < @pages %>
+      <li><a href="/<%= @tag.name -%>/<%= @pages -%>">&raquo;</a></li>
+    <% else %>
+      <li class="disabled"><span>&raquo;</span></li>
+    <% end %>
+  </ul>
+<% end %>

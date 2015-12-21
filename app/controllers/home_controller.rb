@@ -60,13 +60,6 @@ class HomeController < ApplicationController
     return render_post(post)
   end
 
-  # about page
-  def about
-    post = Tag.where(:name => 'about').first.posts.first
-    return render_404 if !post || (!post.is_public && !is_logged_in)
-    return render_post(post)
-  end
-
   # render my resume
   def resume
     data = open(APP_RESUME_URL).read
