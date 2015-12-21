@@ -81,6 +81,7 @@ html, body {
 body {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
+  font-size: 1em;
   line-height: 1.5;
   color: $color;
 }
@@ -154,17 +155,9 @@ ul, ol {
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: "Bitter", "Source Sans Pro", sans-serif;
+  font-family: "Bitter", sans-serif;
   font-weight: 400;
   margin: 16px 0;
-
-  a {
-    font-weight: 300;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
 }
 
 h2 {
@@ -362,8 +355,6 @@ form {
 
 #header {
   $header-height: 42px;
-  $header-link-border-width: 2px;
-  $header-link-border-color: #eee;
   line-height: $header-height;
 
   #title {
@@ -376,7 +367,7 @@ form {
       font-weight: 400;
       text-transform: inherit;
       line-height: inherit;
-      margin: $header-link-border-width 0;
+      margin: 0;
 
       a {
         font-weight: 600;
@@ -409,7 +400,6 @@ form {
       display: inline-block;
       color: inherit;
       padding: 0 16px;
-      margin: $header-link-border-width 0;
 
       @media (max-width: ($stack-width - 1)) {
         & {
@@ -417,18 +407,9 @@ form {
         }
       }
 
-      &:hover {
+      &:hover, &.active {
         color: $color-anchor-hover;
         text-decoration: none;
-      }
-    }
-
-    a.active {
-      border-bottom: $header-link-border-width solid $header-link-border-color;
-      margin-bottom: 0;
-
-      &:hover {
-        color: $color-anchor-hover;
       }
     }
   }

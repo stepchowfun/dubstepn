@@ -19,26 +19,17 @@
   <h2>
     <% if title_link %>
       <a href="<%= post.canonical_uri %>"><%= raw(post.title_html) %></a>
-      <% if !post.is_public %>
-        <span class="muted"><i class="fa fa-eye-slash"></i></span>
-      <% end %>
-      <% if is_logged_in %>
-        <span class="muted"><a href="/admin/edit_post/<%= post.id -%>"><i class="fa fa-edit"></i></a></span>
-      <% end %>
     <% else %>
       <%= raw(post.title_html) %>
-      <% if !post.is_public %>
-        <span class="muted"><i class="fa fa-eye-slash"></i></span>
-      <% end %>
-      <% if is_logged_in %>
-        <span class="muted"><a href="/admin/edit_post/<%= post.id -%>"><i class="fa fa-edit"></i></a></span>
-      <% end %>
+    <% end %>
+    <% if !post.is_public %>
+      <span class="muted"><i class="fa fa-eye-slash"></i></span>
     <% end %>
   </h2>
 
   <% if show_date %>
     <div class="p muted">
-      <i class="fa fa-fw fa-calendar"></i> <%= post.created_at.strftime('%B %e, %Y') %>.
+      <i class="fa fa-fw fa-calendar"></i> <%= post.created_at.strftime('%B %e, %Y') %>
     </div>
   <% end %>
 
