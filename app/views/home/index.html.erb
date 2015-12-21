@@ -24,7 +24,7 @@
   <% content_for :description, APP_DESCRIPTION + '  Category: ' + @tag.name + '.' %>
 
   <% content_for :nav do %>
-    &raquo; <a href="/<%= @tag.name %>"><%= @tag.name.capitalize %></a>
+    &nbsp;&raquo;&nbsp; <a href="/<%= @tag.name %>"><%= @tag.name.capitalize %></a>
   <% end %>
 <% end %>
 
