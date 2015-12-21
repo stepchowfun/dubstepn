@@ -32,7 +32,7 @@
               <a <%= if (defined? @tag_name) && @tag_name == 'home' then 'class="active"'.html_safe else '' end -%> href="/">Home</a><span class="hidden">
               </span><a <%= if (defined? @tag_name) && @tag_name == 'theory' then 'class="active"'.html_safe else '' end -%> href="/theory">Theory</a><span class="hidden">
               </span><a <%= if (defined? @tag_name) && @tag_name == 'projects' then 'class="active"'.html_safe else '' end -%> href="/projects">Projects</a><span class="hidden">
-              </span><br class="small-phone-visible" /><a <%= if (defined? @tag_name) && @tag_name == 'music' then 'class="active"'.html_safe else '' end -%> href="/music">Music</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'music' then 'class="active"'.html_safe else '' end -%> href="/music">Music</a><span class="hidden">
               </span><a <%= if (defined? @tag_name) && @tag_name == 'about' then 'class="active"'.html_safe else '' end -%> href="/about">About</a><span class="hidden">
               </span><% if is_logged_in -%><%= form_tag('/admin/logout', :method => 'post') do -%><a <%= if params[:action].to_sym == :admin then 'class="active"'.html_safe else '' end -%> href="/admin/index">Admin</a><span class="hidden">
               </span><a href="#" onclick="$(this).parent().submit(); return false;">Logout</a><% end -%><% end %>

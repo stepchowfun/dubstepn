@@ -30,8 +30,8 @@ $color-selection: #ffa0fa;
 $color-light-background: #f3f3f3;
 $input-height: 36px;
 $separator-height: 2px;
-$footer-height: $separator-height + 64px;
-$stack-width: 900px;
+$footer-height: $separator-height + 48px;
+$stack-width: 768px; /* Taken from grid.css.scss */
 
 /* Helper classes */
 
@@ -62,12 +62,6 @@ $stack-width: 900px;
 .full-width {
   width: 100%;
   /* NOTE: home.js.coffee automatically makes YouTube videos full-width and preserves their aspect ratio */
-}
-
-@media (min-width: ($stack-width / 2)) {
-  .small-phone-visible {
-    display: none;
-  }
 }
 
 /* Body */
@@ -354,7 +348,7 @@ form {
 /* Header */
 
 #header {
-  $header-height: 42px;
+  $header-height: 48px;
   line-height: $header-height;
 
   #title {
