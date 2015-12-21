@@ -9,6 +9,7 @@ export APP_PROTOCOL="http://"
 export APP_HOST="localhost"
 export APP_RESUME_URL="https://static.stephanboyer.com/resume.pdf"
 export APP_DISQUS_SHORTNAME="stephanboyer"
+export APP_GOOGLE_ANALYTICS_TRACKING_ID="UA-12345678-1"
 export APP_PASSWORD_HASH="5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
 export APP_SECRET="ownffuctewfinugxewfxklagdsngfjkfgawfdsgfilkaulbcnfskfdk"
 
