@@ -51,21 +51,20 @@ module ApplicationHelper
 
     local_path = path[0..("#{ APP_PROTOCOL }#{ APP_HOST }".size - 1)] == "#{ APP_PROTOCOL }#{ APP_HOST }"
 
-    if !options[:force_absolute]
-      # rewrite to relative path if applicable
-      if local_path
-        path = path[("#{ APP_PROTOCOL }#{ APP_HOST }".size)..-1]
-        if path == ''
-          path = '/'
-        end
+    # rewrite to relative path if applicable
+    if !options[:force_absolute] && local_path
+      path = path[("#{ APP_PROTOCOL }#{ APP_HOST }".size)..-1]
+      if path == ''
+        path = '/'
       end
     end
 
+    # add no-cache=1 param if applicable (to force a cache miss)
     if options[:no_cache] && local_path
       if path.include?('?')
-        path = "#{path}&no-cache=1"
+        path.insert(path.index('#') || -1, '&no-cache=1')
       else
-        path = "#{path}?no-cache=1"
+        path.insert(path.index('#') || -1, '?no-cache=1')
       end
     end
 
