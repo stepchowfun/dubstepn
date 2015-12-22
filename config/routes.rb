@@ -94,5 +94,5 @@ Rails.application.routes.draw do
   get "/home" => redirect("/")
   get "/home/1" => redirect("/")
   get "/:tag/:page" => "home#posts_for_tag", :format => false
-  get "/*tag" => "home#catch_all", :format => false # also used for custom redirects
+  get "/*fullpath" => "home#catch_all", :format => false # used for tags and custom redirects
 end

@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <title><%= content_for :title %></title>
     <% if (content_for :description) != '' %>
-      <meta name="description" content="<%= content_for :description %>" />
+      <meta name="description" content="<%= content_for :description -%>" />
     <% end %>
     <meta property="fb:admins" content="1477269179" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -24,17 +24,17 @@
           <div class="row">
             <div id="title" class="span4">
               <h1>
-                <a href="/" id="title-link">Stephan Boyer</a>
+                <a href="<%= normalize_path('/', :no_cache => is_logged_in) -%>" id="title-link">Stephan Boyer</a>
                 <%= content_for :nav %>
               </h1>
             </div>
             <div id="nav" class="span8">
-              <a <%= if (defined? @tag_name) && @tag_name == 'home' then 'class="active"'.html_safe else '' end -%> href="/">Home</a><span class="hidden">
-              </span><a <%= if (defined? @tag_name) && @tag_name == 'theory' then 'class="active"'.html_safe else '' end -%> href="/theory">Theory</a><span class="hidden">
-              </span><a <%= if (defined? @tag_name) && @tag_name == 'projects' then 'class="active"'.html_safe else '' end -%> href="/projects">Projects</a><span class="hidden">
-              </span><a <%= if (defined? @tag_name) && @tag_name == 'music' then 'class="active"'.html_safe else '' end -%> href="/music">Music</a><span class="hidden">
-              </span><a <%= if (defined? @tag_name) && @tag_name == 'about' then 'class="active"'.html_safe else '' end -%> href="/about">About</a><% if is_logged_in -%><span class="hidden">
-              </span><a <%= if params[:action].to_sym == :admin then 'class="active"'.html_safe else '' end -%> href="/admin/index">Admin</a><% end -%>
+              <a <%= if (defined? @tag_name) && @tag_name == 'home' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/', :no_cache => is_logged_in) -%>">Home</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'theory' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/theory', :no_cache => is_logged_in) -%>">Theory</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'projects' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/projects', :no_cache => is_logged_in) -%>">Projects</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'music' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/music', :no_cache => is_logged_in) -%>">Music</a><span class="hidden">
+              </span><a <%= if (defined? @tag_name) && @tag_name == 'about' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/about', :no_cache => is_logged_in) -%>">About</a><% if is_logged_in -%><span class="hidden">
+              </span><a <%= if params[:action].to_sym == :admin then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/admin/index', :no_cache => true) -%>">Admin</a><% end -%>
             </div>
           </div>
         </div>

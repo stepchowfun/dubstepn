@@ -1,7 +1,7 @@
 include ApplicationHelper
 
 class ApplicationController < ActionController::Base
-  before_action :fix_protocol_and_host
+  before_action :fix_protocol_and_host, :set_caching_headers
 
   private
     # use this instead of request.protocol to get the protocol.
@@ -55,7 +55,22 @@ class ApplicationController < ActionController::Base
         # don't cache the redirection (otherwise might get infinite redirect loop)
         disable_caching
 
-        redirect_to normalize_path(request.fullpath, true), :status => 301
+        redirect_to normalize_path(request.fullpath, :force_absolute => true), :status => 301
+      end
+    end
+
+    # return whether the user is logged in
+    def is_logged_in
+      return !!(session[:login_time] && session[:login_time].to_datetime.advance(:hours => 12) >= DateTime.now)
+    end
+
+    # cache for 1 hour
+    # used as a before action
+    def set_caching_headers
+      if is_logged_in || !request.get?
+        disable_caching
+      else
+        enable_caching
       end
     end
 end

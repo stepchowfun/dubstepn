@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   # path :: String
-  def normalize_path(path, force_absolute=false)
+  def normalize_path(path, options={})
     raise if !path.instance_of?(String)
 
     # remove extra whitespace
@@ -49,13 +49,23 @@ module ApplicationHelper
       path = "http://#{ path }"
     end
 
-    if !force_absolute
+    local_path = path[0..("#{ APP_PROTOCOL }#{ APP_HOST }".size - 1)] == "#{ APP_PROTOCOL }#{ APP_HOST }"
+
+    if !options[:force_absolute]
       # rewrite to relative path if applicable
-      if path[0..("#{ APP_PROTOCOL }#{ APP_HOST }".size - 1)] == "#{ APP_PROTOCOL }#{ APP_HOST }"
+      if local_path
         path = path[("#{ APP_PROTOCOL }#{ APP_HOST }".size)..-1]
         if path == ''
           path = '/'
         end
+      end
+    end
+
+    if options[:no_cache] && local_path
+      if path.include?('?')
+        path = "#{path}&no-cache=1"
+      else
+        path = "#{path}?no-cache=1"
       end
     end
 
@@ -175,7 +185,7 @@ module ApplicationHelper
 
       # try to fetch the URL
       begin
-        uri = URI.parse(normalize_path(url, true))
+        uri = URI.parse(normalize_path(url, :force_absolute => true))
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = uri.scheme == 'https'
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE

@@ -9,9 +9,6 @@ class HomeController < ApplicationController
   public_actions = [:catch_all, :posts_for_tag, :post, :about, :resume, :robots, :sitemap, :feed, :login, :login_action]
   before_action :require_login, :except => public_actions
 
-  # set the caching headers
-  after_action :set_caching_headers
-
   # make this method available in views
   helper_method :is_logged_in
 
@@ -25,7 +22,7 @@ class HomeController < ApplicationController
     end
 
     # assume the URL is of the form '/:tag' and render the first page for that tag
-    @tag_name = params[:tag]
+    @tag_name = request.path[1..-1]
     if @tag_name == 'home'
       @is_root = true
     end
@@ -69,7 +66,7 @@ class HomeController < ApplicationController
   # robots.txt
   def robots
     robots = "User-agent: *\r\n"
-    robots << "Sitemap: #{normalize_path('/sitemap', true)}\r\n"
+    robots << "Sitemap: #{normalize_path('/sitemap', :force_absolute => true)}\r\n"
     robots << "Disallow: /admin/\r\n"
     robots << "Allow: /\r\n"
     return render :text => robots, :content_type => Mime::TEXT
@@ -80,19 +77,19 @@ class HomeController < ApplicationController
     sitemap = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
     sitemap << "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n"
     sitemap << "  <url>\r\n"
-    sitemap << "    <loc>#{normalize_path('/', true)}</loc>\r\n"
+    sitemap << "    <loc>#{normalize_path('/', :force_absolute => true)}</loc>\r\n"
     sitemap << "  </url>\r\n"
     Tag.all.each do |tag|
       if !['home'].include?(tag.name)
         sitemap << "  <url>\r\n"
-        sitemap << "    <loc>#{normalize_path("/#{tag.name}", true)}</loc>\r\n"
+        sitemap << "    <loc>#{normalize_path("/#{tag.name}", :force_absolute => true)}</loc>\r\n"
         sitemap << "  </url>\r\n"
       end
     end
     Post.all.each do |post|
       if post.is_public && !post.tags.empty?
         sitemap << "  <url>\r\n"
-        sitemap << "    <loc>#{normalize_path(post.canonical_uri, true).encode(:xml => :text)}</loc>\r\n"
+        sitemap << "    <loc>#{post.canonical_uri(:force_absolute => true).encode(:xml => :text)}</loc>\r\n"
         sitemap << "  </url>\r\n"
       end
     end
@@ -262,21 +259,6 @@ class HomeController < ApplicationController
   end
 
 private
-  # cache for 1 hour
-  # used as a before action
-  def set_caching_headers
-    if is_logged_in || !request.get? || params['no-cache']
-      disable_caching
-    else
-      enable_caching
-    end
-  end
-
-  # return whether the user is logged in
-  def is_logged_in
-    return !!(session[:login_time] && session[:login_time].to_datetime.advance(:hours => 12) >= DateTime.now)
-  end
-
   # make sure the user is logged in before continuing
   # used as a before action
   def require_login
@@ -291,7 +273,7 @@ private
     raise if !path.instance_of?(String)
     raise if !(permanent.instance_of?(TrueClass) || permanent.instance_of?(FalseClass))
 
-    redirect_to normalize_path(path), :status => (permanent ? 301 : 302)
+    redirect_to normalize_path(path, :no_cache => is_logged_in), :status => (permanent ? 301 : 302)
   end
 
   # render a page with a single post
@@ -364,19 +346,19 @@ private
       else
         xml << "    <description>#{APP_DESCRIPTION.encode(:xml => :text)}  Category: #{tag.name}.</description>\r\n"
       end
-      xml << "    <link>#{normalize_path('/', true).encode(:xml => :text)}</link>\r\n"
+      xml << "    <link>#{normalize_path('/', :force_absolute => true).encode(:xml => :text)}</link>\r\n"
       xml << "    <pubDate>#{last_modified_date.to_formatted_s(:rfc822).encode(:xml => :text)}</pubDate>\r\n"
       if tag.name == 'home'
-        xml << "    <atom:link href=\"#{normalize_path('/rss', true).encode(:xml => :text)}\" rel=\"self\" type=\"application/rss+xml\" />\r\n"
+        xml << "    <atom:link href=\"#{normalize_path('/rss', :force_absolute => true).encode(:xml => :text)}\" rel=\"self\" type=\"application/rss+xml\" />\r\n"
       else
-        xml << "    <atom:link href=\"#{normalize_path("/rss/#{tag.name}", true).encode(:xml => :text)}\" rel=\"self\" type=\"application/rss+xml\" />\r\n"
+        xml << "    <atom:link href=\"#{normalize_path("/rss/#{tag.name}", :force_absolute => true).encode(:xml => :text)}\" rel=\"self\" type=\"application/rss+xml\" />\r\n"
       end
       for post in posts
         xml << "    <item>\r\n"
         xml << "      <title>#{post.title.encode(:xml => :text)}</title>\r\n"
         xml << "      <description>#{post.summary.encode(:xml => :text)}</description>\r\n"
-        xml << "      <link>#{normalize_path(post.canonical_uri, true).encode(:xml => :text)}</link>\r\n"
-        xml << "      <guid>#{normalize_path(post.canonical_uri, true).encode(:xml => :text)}</guid>\r\n"
+        xml << "      <link>#{post.canonical_uri(:force_absolute => true).encode(:xml => :text)}</link>\r\n"
+        xml << "      <guid>#{post.canonical_uri(:force_absolute => true).encode(:xml => :text)}</guid>\r\n"
         xml << "      <pubDate>#{post.created_at.to_datetime.to_formatted_s(:rfc822).encode(:xml => :text)}</pubDate>\r\n"
         xml << "    </item>\r\n"
       end
@@ -391,18 +373,18 @@ private
         xml << "  <subtitle>#{APP_DESCRIPTION.encode(:xml => :text)}  Category: #{tag.name}.</subtitle>\r\n"
       end
       if tag.name == 'home'
-        xml << "  <link href=\"#{normalize_path('/atom', true).encode(:xml => :text)}\" rel=\"self\" />\r\n"
+        xml << "  <link href=\"#{normalize_path('/atom', :force_absolute => true).encode(:xml => :text)}\" rel=\"self\" />\r\n"
       else
-        xml << "  <link href=\"#{normalize_path("/atom/#{tag.name}", true).encode(:xml => :text)}\" rel=\"self\" />\r\n"
+        xml << "  <link href=\"#{normalize_path("/atom/#{tag.name}", :force_absolute => true).encode(:xml => :text)}\" rel=\"self\" />\r\n"
       end
-      xml << "  <link href=\"#{normalize_path('/', true).encode(:xml => :text)}\" />\r\n"
-      xml << "  <id>#{normalize_path('/', true).encode(:xml => :text)}</id>\r\n"
+      xml << "  <link href=\"#{normalize_path('/', :force_absolute => true).encode(:xml => :text)}\" />\r\n"
+      xml << "  <id>#{normalize_path('/', :force_absolute => true).encode(:xml => :text)}</id>\r\n"
       xml << "  <updated>#{last_modified_date.to_formatted_s(:rfc3339).encode(:xml => :text)}</updated>\r\n"
       for post in posts
         xml << "  <entry>\r\n"
         xml << "    <title>#{post.title.encode(:xml => :text)}</title>\r\n"
-        xml << "    <link href=\"#{normalize_path(post.canonical_uri, true).encode(:xml => :text)}\" />\r\n"
-        xml << "    <id>#{normalize_path(post.canonical_uri, true).encode(:xml => :text)}</id>\r\n"
+        xml << "    <link href=\"#{post.canonical_uri(:force_absolute => true).encode(:xml => :text)}\" />\r\n"
+        xml << "    <id>#{post.canonical_uri(:force_absolute => true).encode(:xml => :text)}</id>\r\n"
         xml << "    <updated>#{post.created_at.to_datetime.to_formatted_s(:rfc3339).encode(:xml => :text)}</updated>\r\n"
         xml << "    <summary>#{post.summary.encode(:xml => :text)}</summary>\r\n"
         xml << "    <author>\r\n"

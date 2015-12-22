@@ -8,11 +8,11 @@
 
 <% content_for :head do %>
   <% if @tag.name == 'home' %>
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="<%= normalize_path('/rss', true) -%>" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="<%= normalize_path('/atom', true) -%>" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="<%= normalize_path('/rss', :force_absolute => true) -%>" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="<%= normalize_path('/atom', :force_absolute => true) -%>" />
   <% else %>
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="<%= normalize_path("/rss/#{ @tag.name }", true) -%>" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="<%= normalize_path("/atom/#{ @tag.name }", true) -%>" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="<%= normalize_path("/rss/#{ @tag.name }", :force_absolute => true) -%>" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="<%= normalize_path("/atom/#{ @tag.name }", :force_absolute => true) -%>" />
   <% end %>
 <% end %>
 
@@ -24,7 +24,7 @@
   <% content_for :description, APP_DESCRIPTION + '  Category: ' + @tag.name + '.' %>
 
   <% content_for :nav do %>
-    &nbsp;&raquo;&nbsp; <a href="/<%= @tag.name %>"><%= @tag.name.capitalize %></a>
+    &nbsp;&raquo;&nbsp; <a href="<%= normalize_path("/#{ @tag.name }", :no_cache => is_logged_in) -%>"><%= @tag.name.capitalize %></a>
   <% end %>
 <% end %>
 
@@ -39,9 +39,9 @@
   <ul class="pagination clearfix" style="width: <%= (36 + 2) * (@pages + 2) - 2 -%>px;">
     <% if @page > 1 %>
       <% if @tag.name == 'home' %>
-        <li><a href="/">&laquo;</a></li>
+        <li><a href="<%= normalize_path('/', :no_cache => is_logged_in) -%>">&laquo;</a></li>
       <% else %>
-        <li><a href="/<%= @tag.name -%>">&laquo;</a></li>
+        <li><a href="<%= normalize_path("/#{ @tag.name }", :no_cache => is_logged_in) -%>">&laquo;</a></li>
       <% end %>
     <% else %>
       <li class="disabled"><span>&laquo;</span></li>
@@ -52,17 +52,17 @@
       <% else %>
         <% if page == 1 %>
           <% if @tag.name == 'home' %>
-            <li><a href="/"><%= page %></a></li>
+            <li><a href="<%= normalize_path('/', :no_cache => is_logged_in) -%>"><%= page %></a></li>
           <% else %>
-            <li><a href="/<%= @tag.name -%>"><%= page %></a></li>
+            <li><a href="<%= normalize_path("/#{ @tag.name }", :no_cache => is_logged_in) -%>"><%= page %></a></li>
           <% end %>
         <% else %>
-          <li><a href="/<%= @tag.name -%>/<%= page -%>"><%= page %></a></li>
+          <li><a href="<%= normalize_path("/#{ @tag.name }/#{ page }", :no_cache => is_logged_in) -%>"><%= page %></a></li>
         <% end %>
       <% end %>
     <% end %>
     <% if @page < @pages %>
-      <li><a href="/<%= @tag.name -%>/<%= @pages -%>">&raquo;</a></li>
+      <li><a href="<%= normalize_path("/#{ @tag.name }/#{ @pages }", :no_cache => is_logged_in) -%>">&raquo;</a></li>
     <% else %>
       <li class="disabled"><span>&raquo;</span></li>
     <% end %>

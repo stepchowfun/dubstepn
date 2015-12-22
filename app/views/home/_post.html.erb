@@ -18,7 +18,7 @@
 
   <h2>
     <% if title_link %>
-      <a href="<%= post.canonical_uri %>"><%= raw(post.title_html) %></a>
+      <a href="<%= post.canonical_uri(:no_cache => is_logged_in) -%>"><%= raw(post.title_html) %></a>
     <% else %>
       <%= raw(post.title_html) %>
     <% end %>
@@ -38,13 +38,13 @@
   <% if Rails.env.production? && !is_logged_in && social_media %>
     <div class="p social-media-share">
       <div class="social-media-link">
-        <div class="fb-like" data-href="<%= normalize_path(post.canonical_uri, true) -%>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+        <div class="fb-like" data-href="<%= post.canonical_uri(:force_absolute => true) -%>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
       </div>
       <div class="social-media-link">
-        <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="<%= normalize_path(post.canonical_uri, true) -%>" data-text="<%= post.title -%>">Tweet</a>
+        <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="<%= post.canonical_uri(:force_absolute => true) -%>" data-text="<%= post.title -%>">Tweet</a>
       </div>
       <div class="social-media-link">
-        <div class="g-plus" data-action="share" data-annotation="none" data-href="<%= normalize_path(post.canonical_uri, true) -%>"></div>
+        <div class="g-plus" data-action="share" data-annotation="none" data-href="<%= post.canonical_uri(:force_absolute => true) -%>"></div>
       </div>
     </div>
   <% end %>
@@ -53,12 +53,12 @@
     <div class="row p">
       <% if previous_post %>
         <div class="span6 previous-post">
-          <a href="<%= previous_post.canonical_uri -%>"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;<%= raw(previous_post.title_html) -%></a>
+          <a href="<%= previous_post.canonical_uri(:no_cache => is_logged_in) -%>"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;<%= raw(previous_post.title_html) -%></a>
         </div>
       <% end %>
       <% if next_post %>
         <div class="span6 next-post <%= if previous_post then '' else 'offset6' end -%>">
-          <a href="<%= next_post.canonical_uri -%>"><%= raw(next_post.title_html) -%>&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a>
+          <a href="<%= next_post.canonical_uri(:no_cache => is_logged_in) -%>"><%= raw(next_post.title_html) -%>&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a>
         </div>
       <% end %>
     </div>
@@ -70,7 +70,7 @@
         <div id="disqus_thread"></div>
         <script>
         var disqus_config = function () {
-          this.page.url = <%= normalize_path(post.canonical_uri, true).to_json.html_safe -%>;
+          this.page.url = <%= post.canonical_uri(:force_absolute => true).to_json.html_safe -%>;
           this.page.identifier = <%= post.id.to_json.html_safe -%>;
         };
         (function() {
@@ -84,7 +84,7 @@
       </div>
     <% end %>
   <% elsif comments_mode == :count %>
-    <div class="p"><a href="<%= normalize_path(post.canonical_uri, true) -%>#disqus_thread">0 Comments</a></div>
+    <div class="p"><a href="<%= post.canonical_uri(:force_absolute => true) -%>#disqus_thread">0 Comments</a></div>
   <% end %>
 
   <% if post.javascript != '' %>

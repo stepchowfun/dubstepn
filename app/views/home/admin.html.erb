@@ -56,7 +56,7 @@
             <a href="#" onclick="if (window.confirm('Are you sure you want to delete post &ldquo;<%= post.title.gsub(/'/, {"'" => "\\'"}) -%>&rdquo;?')) { $(this).parent().submit(); } return false;"><i class="fa fa-trash-o"></i></a>
           <% end %>
           &nbsp;
-          <a href="<%= post.canonical_uri -%>"><%= raw(post.title_html) %></a>
+          <a href="<%= post.canonical_uri(:no_cache => true) -%>"><%= raw(post.title_html) %></a>
           <%= if post.is_public then '' else raw(' <span class="muted">(hidden)</span>') end %>
         </li>
       <% end %>
@@ -69,7 +69,7 @@
   <% if @tags.size > 0 %>
     <ul>
       <% for tag in @tags %>
-        <li><a href="/<%= tag.name %>" class="tag"><%= tag.name %></a></li>
+        <li><a href="<%= normalize_path("/#{tag.name}", :no_cache => true) -%>" class="tag"><%= tag.name %></a></li>
       <% end %>
     </ul>
   <% else %>
@@ -93,9 +93,9 @@
             <a href="#" onclick="if (window.confirm('Are you sure you want to delete redirect &ldquo;<%= redirect.from.gsub(/'/, {"'" => "\\'"}) -%>&rdquo; -> &ldquo;<%= redirect.to.gsub(/'/, {"'" => "\\'"}) -%>&rdquo;?')) { $(this).parent().submit(); } return false;"><i class="fa fa-trash-o"></i></a>
           <% end %>
           &nbsp;
-          <a href="<%= redirect.from %>"><%= redirect.from %></a>
+          <a href="<%= redirect.from -%>"><%= redirect.from %></a>
           <i class="fa fa-long-arrow-right"></i>
-          <a href="<%= redirect.to %>"><%= redirect.to %></a>
+          <a href="<%= normalize_path(redirect.to, :no_cache => true) -%>"><%= redirect.to %></a>
         </li>
       <% end %>
     </ul>

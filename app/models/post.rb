@@ -42,13 +42,8 @@ class Post < ActiveRecord::Base
   end
 
   # get the canonical URI for this post
-  def canonical_uri
-    return normalize_path("/post/#{ self.id.to_s }/#{ URI::encode(self.title.downcase.gsub(/[\"\']/, '').gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-').gsub(/\A-/, '').gsub(/-\Z/, '')) }")
-  end
-
-  # get the URI for an uncached version of this post (admin-only)
-  def no_cache_uri
-    return normalize_path("/post/#{ self.id.to_s }/#{ URI::encode(self.title.downcase.gsub(/[\"\']/, '').gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-').gsub(/\A-/, '').gsub(/-\Z/, '')) }?no-cache=1")
+  def canonical_uri(options={})
+    return normalize_path("/post/#{ self.id.to_s }/#{ URI::encode(self.title.downcase.gsub(/[\"\']/, '').gsub(/[^a-z0-9]/, '-').gsub(/-+/, '-').gsub(/\A-/, '').gsub(/-\Z/, '')) }", options)
   end
 
   # fill in the title_html and content_html fields
