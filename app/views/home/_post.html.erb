@@ -28,8 +28,8 @@
   </h2>
 
   <% if show_date %>
-    <div class="p muted">
-      <i class="fa fa-fw fa-calendar"></i> <%= post.created_at.strftime('%B %e, %Y') %>
+    <div class="p muted post-date">
+      <%= post.created_at.strftime('%B %e, %Y') %>
     </div>
   <% end %>
 

@@ -73,9 +73,9 @@ html, body {
 }
 
 body {
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 400;
-  font-size: 1.1em;
+  font-family: "Merriweather", sans-serif;
+  font-weight: 300;
+  font-size: 1em;
   line-height: 1.5;
   color: $color;
 }
@@ -117,7 +117,7 @@ a.tag {
   background-color: $color-anchor;
   color: #fff;
   font-size: 0.8em;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
   text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
   line-height: 1.6;
@@ -149,14 +149,16 @@ ul, ol {
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: "Bitter", sans-serif;
-  font-weight: 400;
+  font-family: "Merriweather", sans-serif;
+  font-weight: 300;
   margin: 16px 0;
 }
 
 h2 {
   font-size: 1.8em;
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
 
   a {
     color: inherit;
@@ -171,11 +173,11 @@ h3 {
 h4 {
   font-size: 1em;
   margin-top: 32px;
-  color: $color-light;
+  font-weight: 700;
 }
 
 code, pre, .monospace {
-  font-family: "Droid Sans Mono", "Monaco", "Lucida Console", "Terminal", sans-serif;
+  font-family: "Droid Sans Mono", sans-serif;
   font-size: 0.9em;
 }
 
@@ -191,7 +193,7 @@ pre {
   white-space: pre;
   word-wrap: normal;
   overflow: auto;
-  max-height: 600px;
+  max-height: 700px;
 }
 
 blockquote {
@@ -273,7 +275,7 @@ ul.pagination {
 /* Inline elements */
 
 strong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .article {
@@ -311,7 +313,7 @@ input[type=submit], .button-link {
   color: #fff;
   background-color: $color-anchor;
   text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: $input-height;
 
   &:hover {
@@ -361,13 +363,13 @@ form {
 
     h1 {
       font-size: inherit;
-      font-weight: 400;
+      font-weight: 300;
       text-transform: inherit;
       line-height: inherit;
       margin: 0;
 
       a {
-        font-weight: 600;
+        font-weight: 300;
         display: inline-block;
         color: inherit;
         &:hover {
@@ -386,7 +388,7 @@ form {
 
   #nav {
     text-align: right;
-    font-weight: 400;
+    font-weight: 300;
 
     @media (max-width: ($stack-width - 1)) {
       text-align: center;
@@ -395,10 +397,10 @@ form {
     a {
       display: inline-block;
       color: inherit;
-      padding: 0 16px;
+      padding: 0 12px;
       position: relative;
       top: 0;
-      left: 16px;
+      left: 12px;
 
       @media (max-width: ($stack-width - 1)) {
         & {
@@ -439,6 +441,11 @@ div.post-separator {
     .MathJax_Display {
       overflow-x: auto;
       overflow-y: hidden;
+    }
+
+    .post-date {
+      margin-top: 4px;
+      margin-bottom: 32px;
     }
 
     .previous-post {
