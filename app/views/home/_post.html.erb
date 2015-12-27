@@ -22,8 +22,11 @@
     <% else %>
       <%= raw(post.title_html) %>
     <% end %>
-    <% if !post.is_public %>
-      <span class="muted"><i class="fa fa-eye-slash"></i></span>
+    <% if is_logged_in %>
+      <% if !post.is_public %>
+        <span class="muted"><i class="fa fa-eye-slash"></i></span>
+      <% end %>
+      <span class="muted"><a href="/admin/edit_post/<%= post.id -%>"><i class="fa fa-edit"></i></a></span>
     <% end %>
   </h2>
 
