@@ -1,11 +1,11 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * This is a manifest file that"ll be compiled into application.css, which will include all the files
  * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * or any plugin"s vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * You"re free to add application-wide styles to this file and they"ll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
@@ -16,6 +16,91 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+/*
+ *  Crimson font
+ */
+
+@font-face {
+  font-family: "Crimson";
+  src: url("/crimson/crimson-roman-webfont.eot");
+  src: url("/crimson/crimson-roman-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/crimson/crimson-roman-webfont.woff2") format("woff2"),
+       url("/crimson/crimson-roman-webfont.woff") format("woff"),
+       url("/crimson/crimson-roman-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Crimson";
+  src: url("/crimson/crimson-italic-webfont.eot");
+  src: url("/crimson/crimson-italic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/crimson/crimson-italic-webfont.woff2") format("woff2"),
+       url("/crimson/crimson-italic-webfont.woff") format("woff"),
+       url("/crimson/crimson-italic-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Crimson";
+  src: url("/crimson/crimson-semibold-webfont.eot");
+  src: url("/crimson/crimson-semibold-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/crimson/crimson-semibold-webfont.woff2") format("woff2"),
+       url("/crimson/crimson-semibold-webfont.woff") format("woff"),
+       url("/crimson/crimson-semibold-webfont.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Crimson";
+  src: url("/crimson/crimson-semibolditalic-webfont.eot");
+  src: url("/crimson/crimson-semibolditalic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/crimson/crimson-semibolditalic-webfont.woff2") format("woff2"),
+       url("/crimson/crimson-semibolditalic-webfont.woff") format("woff"),
+       url("/crimson/crimson-semibolditalic-webfont.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Crimson";
+  src: url("/crimson/crimson-bold-webfont.eot");
+  src: url("/crimson/crimson-bold-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/crimson/crimson-bold-webfont.woff2") format("woff2"),
+       url("/crimson/crimson-bold-webfont.woff") format("woff"),
+       url("/crimson/crimson-bold-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Crimson";
+  src: url("/crimson/crimson-bolditalic-webfont.eot");
+  src: url("/crimson/crimson-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/crimson/crimson-bolditalic-webfont.woff2") format("woff2"),
+       url("/crimson/crimson-bolditalic-webfont.woff") format("woff"),
+       url("/crimson/crimson-bolditalic-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+/*
+ *  Droid Sans Mono font
+ */
+
+@font-face {
+  font-family: "Droid Sans Mono";
+  src: url("/droid-sans-mono/droidsansmono-webfont.eot");
+  src: url("/droid-sans-mono/droidsansmono-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/droid-sans-mono/droidsansmono-webfont.woff2") format("woff2"),
+       url("/droid-sans-mono/droidsansmono-webfont.woff") format("woff"),
+       url("/droid-sans-mono/droidsansmono-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*
  *  Global constants
@@ -73,9 +158,9 @@ html, body {
 }
 
 body {
-  font-family: "Crimson Text", serif;
+  font-family: "Crimson", serif;
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1.1em;
   text-align: justify;
   line-height: 1.4;
   color: $color;
@@ -150,7 +235,7 @@ ul, ol {
 }
 
 h2, h3, h4, h5, h6 {
-  font-weight: 700;
+  font-weight: 600;
   margin: 16px 0;
 }
 
@@ -274,7 +359,7 @@ ul.pagination {
 /* Inline elements */
 
 strong {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .article {
