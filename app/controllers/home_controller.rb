@@ -2,7 +2,7 @@ include ApplicationHelper
 
 class HomeController < ApplicationController
   # whitelist of actions that are viewable to the public
-  public_actions = [:catch_all, :posts_for_tag, :post, :about, :resume, :robots, :sitemap, :feed, :login, :login_action]
+  public_actions = [:catch_all, :posts_for_tag, :post, :robots, :sitemap, :feed, :login, :login_action]
   before_action :require_login, :except => public_actions
 
   # make this method available in views
