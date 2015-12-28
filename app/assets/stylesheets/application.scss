@@ -160,9 +160,9 @@ html, body {
 body {
   font-family: "Crimson", serif;
   font-weight: 300;
-  font-size: 1.1em;
+  font-size: 1.05em;
   text-align: justify;
-  line-height: 1.4;
+  line-height: 1.5;
   color: $color;
 }
 
@@ -261,8 +261,8 @@ h4 {
 }
 
 code, pre, .monospace {
-  font-family: "Droid Sans Mono", sans-serif;
-  font-size: 0.8em;
+  font-family: "Droid Sans Mono", monospace;
+  font-size: 0.9em;
 }
 
 code {
