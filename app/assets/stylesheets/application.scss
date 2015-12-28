@@ -18,73 +18,127 @@
 @import "font-awesome";
 
 /*
- *  Crimson font
+ *  Lato font
  */
 
 @font-face {
-  font-family: "Crimson";
-  src: url("/crimson/crimson-roman-webfont.eot");
-  src: url("/crimson/crimson-roman-webfont.eot?#iefix") format("embedded-opentype"),
-       url("/crimson/crimson-roman-webfont.woff2") format("woff2"),
-       url("/crimson/crimson-roman-webfont.woff") format("woff"),
-       url("/crimson/crimson-roman-webfont.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "Lato";
+  src: url("/lato/lato-black-webfont.eot");
+  src: url("/lato/lato-black-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-black-webfont.woff2") format("woff2"),
+       url("/lato/lato-black-webfont.woff") format("woff"),
+       url("/lato/lato-black-webfont.ttf") format("truetype"),
+       url("/lato/lato-black-webfont.svg#latoblack") format("svg");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Crimson";
-  src: url("/crimson/crimson-italic-webfont.eot");
-  src: url("/crimson/crimson-italic-webfont.eot?#iefix") format("embedded-opentype"),
-       url("/crimson/crimson-italic-webfont.woff2") format("woff2"),
-       url("/crimson/crimson-italic-webfont.woff") format("woff"),
-       url("/crimson/crimson-italic-webfont.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "Lato";
+  src: url("/lato/lato-blackitalic-webfont.eot");
+  src: url("/lato/lato-blackitalic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-blackitalic-webfont.woff2") format("woff2"),
+       url("/lato/lato-blackitalic-webfont.woff") format("woff"),
+       url("/lato/lato-blackitalic-webfont.ttf") format("truetype"),
+       url("/lato/lato-blackitalic-webfont.svg#latoblack_italic") format("svg");
+  font-weight: 900;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Crimson";
-  src: url("/crimson/crimson-semibold-webfont.eot");
-  src: url("/crimson/crimson-semibold-webfont.eot?#iefix") format("embedded-opentype"),
-       url("/crimson/crimson-semibold-webfont.woff2") format("woff2"),
-       url("/crimson/crimson-semibold-webfont.woff") format("woff"),
-       url("/crimson/crimson-semibold-webfont.ttf") format("truetype");
-  font-weight: 600;
+  font-family: "Lato";
+  src: url("/lato/lato-bold-webfont.eot");
+  src: url("/lato/lato-bold-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-bold-webfont.woff2") format("woff2"),
+       url("/lato/lato-bold-webfont.woff") format("woff"),
+       url("/lato/lato-bold-webfont.ttf") format("truetype"),
+       url("/lato/lato-bold-webfont.svg#latobold") format("svg");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Crimson";
-  src: url("/crimson/crimson-semibolditalic-webfont.eot");
-  src: url("/crimson/crimson-semibolditalic-webfont.eot?#iefix") format("embedded-opentype"),
-       url("/crimson/crimson-semibolditalic-webfont.woff2") format("woff2"),
-       url("/crimson/crimson-semibolditalic-webfont.woff") format("woff"),
-       url("/crimson/crimson-semibolditalic-webfont.ttf") format("truetype");
-  font-weight: 600;
+  font-family: "Lato";
+  src: url("/lato/lato-bolditalic-webfont.eot");
+  src: url("/lato/lato-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-bolditalic-webfont.woff2") format("woff2"),
+       url("/lato/lato-bolditalic-webfont.woff") format("woff"),
+       url("/lato/lato-bolditalic-webfont.ttf") format("truetype"),
+       url("/lato/lato-bolditalic-webfont.svg#latobold_italic") format("svg");
+  font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Crimson";
-  src: url("/crimson/crimson-bold-webfont.eot");
-  src: url("/crimson/crimson-bold-webfont.eot?#iefix") format("embedded-opentype"),
-       url("/crimson/crimson-bold-webfont.woff2") format("woff2"),
-       url("/crimson/crimson-bold-webfont.woff") format("woff"),
-       url("/crimson/crimson-bold-webfont.ttf") format("truetype");
-  font-weight: bold;
+  font-family: "Lato";
+  src: url("/lato/lato-hairline-webfont.eot");
+  src: url("/lato/lato-hairline-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-hairline-webfont.woff2") format("woff2"),
+       url("/lato/lato-hairline-webfont.woff") format("woff"),
+       url("/lato/lato-hairline-webfont.ttf") format("truetype"),
+       url("/lato/lato-hairline-webfont.svg#latohairline") format("svg");
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Crimson";
-  src: url("/crimson/crimson-bolditalic-webfont.eot");
-  src: url("/crimson/crimson-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),
-       url("/crimson/crimson-bolditalic-webfont.woff2") format("woff2"),
-       url("/crimson/crimson-bolditalic-webfont.woff") format("woff"),
-       url("/crimson/crimson-bolditalic-webfont.ttf") format("truetype");
-  font-weight: bold;
+  font-family: "Lato";
+  src: url("/lato/lato-hairlineitalic-webfont.eot");
+  src: url("/lato/lato-hairlineitalic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-hairlineitalic-webfont.woff2") format("woff2"),
+       url("/lato/lato-hairlineitalic-webfont.woff") format("woff"),
+       url("/lato/lato-hairlineitalic-webfont.ttf") format("truetype"),
+       url("/lato/lato-hairlineitalic-webfont.svg#latohairline_italic") format("svg");
+  font-weight: 100;
   font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/lato/lato-italic-webfont.eot");
+  src: url("/lato/lato-italic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-italic-webfont.woff2") format("woff2"),
+       url("/lato/lato-italic-webfont.woff") format("woff"),
+       url("/lato/lato-italic-webfont.ttf") format("truetype"),
+       url("/lato/lato-italic-webfont.svg#latoitalic") format("svg");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/lato/lato-light-webfont.eot");
+  src: url("/lato/lato-light-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-light-webfont.woff2") format("woff2"),
+       url("/lato/lato-light-webfont.woff") format("woff"),
+       url("/lato/lato-light-webfont.ttf") format("truetype"),
+       url("/lato/lato-light-webfont.svg#latolight") format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/lato/lato-lightitalic-webfont.eot");
+  src: url("/lato/lato-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-lightitalic-webfont.woff2") format("woff2"),
+       url("/lato/lato-lightitalic-webfont.woff") format("woff"),
+       url("/lato/lato-lightitalic-webfont.ttf") format("truetype"),
+       url("/lato/lato-lightitalic-webfont.svg#latolight_italic") format("svg");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/lato/lato-regular-webfont.eot");
+  src: url("/lato/lato-regular-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/lato/lato-regular-webfont.woff2") format("woff2"),
+       url("/lato/lato-regular-webfont.woff") format("woff"),
+       url("/lato/lato-regular-webfont.ttf") format("truetype"),
+       url("/lato/lato-regular-webfont.svg#latoregular") format("svg");
+  font-weight: 400;
+  font-style: normal;
 }
 
 /*
@@ -158,7 +212,7 @@ html, body {
 }
 
 body {
-  font-family: "Crimson", serif;
+  font-family: "Lato", serif;
   font-weight: 400;
   font-size: 1.05em;
   text-align: justify;
@@ -205,7 +259,6 @@ a.tag {
   font-size: 0.8em;
   white-space: nowrap;
   text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
-  line-height: 1.6;
 
   &:hover {
     background-color: $color-anchor-hover;
@@ -240,7 +293,7 @@ h2, h3, h4, h5, h6 {
 
 h2 {
   font-size: 1.8em;
-  line-height: 1.2;
+  line-height: 1.3;
   text-align: left;
   margin-bottom: 4px;
 
@@ -438,10 +491,6 @@ form {
   font-size: 0.85em;
 
   #title {
-    position: relative; /* to correct for the font not being vertically centered */
-    left: 0;            /* to correct for the font not being vertically centered */
-    top: 0.15em;         /* to correct for the font not being vertically centered */
-
     @media (max-width: ($stack-width - 1)) {
       text-align: center;
     }
@@ -472,9 +521,6 @@ form {
 
   #nav {
     text-align: right;
-    position: relative; /* to correct for the font not being vertically centered */
-    left: 0;            /* to correct for the font not being vertically centered */
-    top: 0.15em;         /* to correct for the font not being vertically centered */
 
     @media (max-width: ($stack-width - 1)) {
       text-align: center;
@@ -576,8 +622,5 @@ div.post-separator {
     margin: 0;
     position: relative;
     left: 0;
-    position: relative; /* to correct for the font not being vertically centered */
-    left: 0;            /* to correct for the font not being vertically centered */
-    top: 0.15em;         /* to correct for the font not being vertically centered */
   }
 }
