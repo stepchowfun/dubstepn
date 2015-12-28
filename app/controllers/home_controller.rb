@@ -1,8 +1,4 @@
 include ApplicationHelper
-require 'uri'
-require 'date'
-require 'digest'
-require 'open-uri'
 
 class HomeController < ApplicationController
   # whitelist of actions that are viewable to the public
@@ -55,12 +51,6 @@ class HomeController < ApplicationController
       return smart_redirect(post.canonical_uri, true)
     end
     return render_post(post)
-  end
-
-  # render my resume
-  def resume
-    data = open(APP_RESUME_URL).read
-    send_data data, :type => 'application/pdf', :disposition => 'inline'
   end
 
   # robots.txt

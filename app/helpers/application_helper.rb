@@ -10,7 +10,6 @@ module ApplicationHelper
   APP_EMAIL = ENV['APP_EMAIL'] # e.g., "stephan@stephanboyer.com"
   APP_PROTOCOL = ENV['APP_PROTOCOL'] # e.g., "https://"
   APP_HOST = ENV['APP_HOST'] # e.g., "www.stephanboyer.com"
-  APP_RESUME_URL = ENV['APP_RESUME_URL'] # e.g., "http://s3.amazonaws.com/dubstepn/resume.pdf"
   APP_DISQUS_SHORTNAME = ENV['APP_DISQUS_SHORTNAME'] # e.g., stephanboyer
   APP_GOOGLE_ANALYTICS_TRACKING_ID = ENV['APP_GOOGLE_ANALYTICS_TRACKING_ID'] # e.g., UA-12345678-1
   APP_PASSWORD_HASH = ENV['APP_PASSWORD_HASH'] # sha256 hexdigest of password
@@ -23,7 +22,6 @@ module ApplicationHelper
      !APP_EMAIL ||
      !APP_PROTOCOL ||
      !APP_HOST ||
-     !APP_RESUME_URL ||
      !APP_DISQUS_SHORTNAME ||
      !APP_GOOGLE_ANALYTICS_TRACKING_ID ||
      !APP_PASSWORD_HASH ||

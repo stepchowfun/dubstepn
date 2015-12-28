@@ -58,7 +58,6 @@ Rails.application.routes.draw do
   root "home#posts_for_tag", :format => false
   get "/post/:post_id/*title" => "home#post", :format => false
   get "/post/:post_id" => "home#post", :format => false
-  get "/resume" => "home#resume", :format => false
 
   # for web crawlers and search engines
   get "/robots.txt" => "home#robots", :format => false
