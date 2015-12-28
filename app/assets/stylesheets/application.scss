@@ -159,7 +159,7 @@ html, body {
 
 body {
   font-family: "Crimson", serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.05em;
   text-align: justify;
   line-height: 1.5;
@@ -203,7 +203,6 @@ a.tag {
   background-color: $color-anchor;
   color: #fff;
   font-size: 0.8em;
-  font-weight: 400;
   white-space: nowrap;
   text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
   line-height: 1.6;
@@ -277,7 +276,6 @@ pre {
   white-space: pre;
   word-wrap: normal;
   overflow: auto;
-  max-height: 400px;
 }
 
 blockquote {
@@ -397,7 +395,6 @@ input[type=submit], .button-link {
   color: #fff;
   background-color: $color-anchor;
   text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
-  font-weight: 400;
   line-height: $input-height;
 
   &:hover {
@@ -441,13 +438,17 @@ form {
   font-size: 0.85em;
 
   #title {
+    position: relative; /* to correct for the font not being vertically centered */
+    left: 0;            /* to correct for the font not being vertically centered */
+    top: 0.15em;         /* to correct for the font not being vertically centered */
+
     @media (max-width: ($stack-width - 1)) {
       text-align: center;
     }
 
     h1 {
       font-size: inherit;
-      font-weight: 300;
+      font-weight: 400;
       text-transform: inherit;
       line-height: inherit;
       margin: 0;
@@ -471,6 +472,9 @@ form {
 
   #nav {
     text-align: right;
+    position: relative; /* to correct for the font not being vertically centered */
+    left: 0;            /* to correct for the font not being vertically centered */
+    top: 0.15em;         /* to correct for the font not being vertically centered */
 
     @media (max-width: ($stack-width - 1)) {
       text-align: center;
@@ -570,5 +574,10 @@ div.post-separator {
   #footer .p {
     line-height: $footer-height - $separator-height;
     margin: 0;
+    position: relative;
+    left: 0;
+    position: relative; /* to correct for the font not being vertically centered */
+    left: 0;            /* to correct for the font not being vertically centered */
+    top: 0.15em;         /* to correct for the font not being vertically centered */
   }
 }
