@@ -214,7 +214,7 @@ html, body {
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 1.05em;
+  font-size: 1em;
   text-align: justify;
   line-height: 1.5;
   color: $color;
@@ -256,9 +256,9 @@ a.tag {
   padding: 0px 4px;
   background-color: $color-anchor;
   color: #fff;
-  font-size: 0.8em;
+  font-size: 0.85em;
+  font-weight: 600;
   white-space: nowrap;
-  text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
 
   &:hover {
     background-color: $color-anchor-hover;
@@ -447,8 +447,8 @@ input[type=submit], .button-link {
   padding: 0 16px;
   color: #fff;
   background-color: $color-anchor;
-  text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
   line-height: $input-height;
+  white-space: nowrap;
 
   &:hover {
     background-color: $color-anchor-hover;

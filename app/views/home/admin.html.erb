@@ -18,16 +18,15 @@
 <div class="article">
   <h2><a href="/admin/index">Admin Panel</a></h2>
   <div class="p">
-    <a href="https://www.google.com/analytics/web/?pli=1#report/visitors-overview/a34278795w61806029p63320640/" class="button-link">Google Analytics</a>
     <%= form_tag('/admin/logout', :method => 'post') do %>
-      <input type="submit" value="Log Out" />
+      <input type="submit" value="Log out" />
     <% end %>
   </div>
 
   <h3>Posts</h3>
   <div class="p">
     <%= form_tag('/admin/create_post', :method => 'post') do %>
-      <input type="submit" value="New Post" />
+      <input type="submit" value="New post" />
     <% end %>
   </div>
   <% if @posts.size > 0 %>
@@ -81,7 +80,7 @@
     <%= form_tag('/admin/create_redirect', :method => 'post', :onsubmit => "var from = prompt('Original URL (e.g. /unicycle):'); if (from == null) { return false; } var to = prompt('New URL (e.g. /post/1/unicycle):'); if (to == null) { return false; } $('#redirect_from').val(from); $('#redirect_to').val(to); return true;") do %>
       <input type="hidden" name="redirect_from" id="redirect_from" />
       <input type="hidden" name="redirect_to" id="redirect_to" />
-      <input type="submit" value="New Redirect" />
+      <input type="submit" value="New redirect" />
     <% end %>
   </div>
   <% if @redirects.size > 0 %>
