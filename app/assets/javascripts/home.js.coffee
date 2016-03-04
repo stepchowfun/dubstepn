@@ -26,3 +26,10 @@ $(document).ready () ->
 
   # make all youtube videos full-width
   $("iframe[src*='www.youtube.com']").load(() -> make_full_width(this))
+
+  # make all images the right size
+  fix_size = () ->
+    naturalWidth = $(this).get(0).naturalWidth
+    if naturalWidth?
+      $(this).width(naturalWidth / 2)
+  $(".article .p img").each(fix_size).load(fix_size)

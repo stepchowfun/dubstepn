@@ -417,10 +417,17 @@ strong {
 .article {
   .p {
     img, video {
-      display: inline-block;
-      vertical-align: middle;
+      display: block;
       border-width: 0;
+      margin: 32px auto;
+    }
+
+    video {
       width: 100%;
+    }
+
+    img {
+      max-width: 100%;
     }
   }
 }
