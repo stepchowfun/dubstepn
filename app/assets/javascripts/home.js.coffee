@@ -33,3 +33,8 @@ $(document).ready () ->
     if naturalWidth?
       $(this).width(naturalWidth / 2)
   $(".article .p img").each(fix_size).load(fix_size)
+
+  # syntax highlighting
+  $('pre').each((i, block) ->
+    hljs.highlightBlock(block);
+  );

@@ -331,11 +331,9 @@ code {
 
 pre {
   margin: $line-height 0;
-  padding: $line-height;
-  background-color: $color-light-background;
+  padding: $line-height ($line-height * 1.5);
   white-space: pre;
   word-wrap: normal;
-  overflow: auto;
 }
 
 blockquote {
