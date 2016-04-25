@@ -216,9 +216,13 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-size: 1em;
-  text-align: justify;
   line-height: $line-height;
   color: $color;
+  text-align: justify;
+
+  @media (max-width: ($stack-width - 1)) {
+    text-align: left;
+  }
 }
 
 #footer-fix-container {
