@@ -219,6 +219,8 @@ body {
   line-height: $line-height;
   color: $color;
   text-align: justify;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   @media (max-width: ($stack-width - 1)) {
     text-align: left;
@@ -242,7 +244,6 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing:    border-box;
   box-sizing:         border-box;
-  word-wrap: break-word;
 }
 
 /* Anchors */
@@ -331,13 +332,17 @@ code, pre, .monospace {
 code {
   white-space: pre-wrap;
   word-wrap: normal;
+  overflow-wrap: normal;
+  word-break: break-all;
 }
 
 pre {
   margin: $line-height 0;
   padding: $line-height ($line-height * 1.5);
+  overflow-x: auto;
   white-space: pre;
   word-wrap: normal;
+  overflow-wrap: normal;
 }
 
 blockquote {
