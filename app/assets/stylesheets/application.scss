@@ -353,24 +353,6 @@ blockquote {
   color: $color-light;
 }
 
-.notice, .error {
-  padding: $line-height;
-  background-color: #f3f3f3;
-  margin: $line-height 0;
-
-  .close-container {
-    float: right;
-
-    a {
-      color: inherit;
-
-      &:hover {
-        color: $color-anchor-hover;
-      }
-    }
-  }
-}
-
 ul {
   list-style-type: square;
 }

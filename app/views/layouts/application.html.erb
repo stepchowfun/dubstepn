@@ -3,7 +3,7 @@
   #   @tag_name       String | nil
   #   @is_root        boolean
 %><!DOCTYPE html>
-<html lang="<%= APP_LANGUAGE -%>" data-ng-app>
+<html lang="<%= APP_LANGUAGE -%>">
   <head>
     <meta charset="UTF-8" />
     <title><%= content_for :title %></title>
@@ -15,7 +15,7 @@
     <%= javascript_include_tag 'application' %>
     <%= content_for :head %>
   </head>
-  <body data-ng-cloak class="ng-cloak">
+  <body>
     <div id="footer-fix-container">
       <div id="header">
         <div class="container">
@@ -43,16 +43,6 @@
       <div class="container" id="content">
         <div class="row">
           <div class="span12">
-            <% if flash[:notice] %>
-              <div class="notice clearfix" data-ng-init="show_notice=true;" data-ng-show="show_notice">
-                <i class="fa fa-bell-o"></i> <%= flash[:notice].html_safe %> <div class="close-container"><a href="#" data-ng-click="show_notice=false; $event.stopPropagation(); $event.preventDefault();"><i class="fa fa-check-square-o"></i></a></div>
-              </div>
-            <% end %>
-            <% if flash[:error] %>
-              <div class="error clearfix" data-ng-init="show_error=true;" data-ng-show="show_error">
-                <i class="fa fa-exclamation-circle"></i> <%= flash[:error].html_safe %> <div class="close-container"><a href="#" data-ng-click="show_error=false; $event.stopPropagation(); $event.preventDefault();"><i class="fa fa-check-square-o"></i></a></div>
-              </div>
-            <% end %>
             <%= yield %>
           </div>
         </div>

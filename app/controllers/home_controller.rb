@@ -112,7 +112,6 @@ class HomeController < ApplicationController
     post.sort_id = post.id
     post.markdown!
     post.save!
-    flash[:notice] = 'New post created.'
     return smart_redirect("/admin/edit_post/#{post.id.to_s}", false)
   end
 
@@ -169,8 +168,7 @@ class HomeController < ApplicationController
   # edit the content of a post
   def edit_post_action
     if params[:post_title].strip.size == 0
-      flash[:error] = 'Title cannot be empty.'
-      return smart_redirect("/admin/edit_post/#{params[:post_id]}", false)
+      return render :text => 'Title cannot be empty.'
     end
     post = Post.find(params[:post_id].to_i)
     while !post.tags.empty?
@@ -184,7 +182,6 @@ class HomeController < ApplicationController
     post.is_public = !!params[:post_is_public]
     post.markdown!
     post.save!
-    flash[:notice] = "The changes to the post entitled \"#{post.title_html}\" have been saved."
     return smart_redirect("/admin/edit_post/#{post.id.to_s}", false)
   end
 
@@ -195,23 +192,19 @@ class HomeController < ApplicationController
       Tag.unlink_tag_from_post(post, post.tags.first)
     end
     post.destroy
-    flash[:notice] = "The post entitled \"#{post.title_html}\" has been deleted."
     return smart_redirect('/admin/index', false)
   end
 
   # create a new custom redirect
   def create_redirect_action
     if params[:redirect_from].strip.size == 0
-      flash[:error] = 'Original URL cannot be empty'
-      return smart_redirect('/admin/index', false)
+      return render :text => 'Original URL cannot be empty'
     end
     if params[:redirect_to].strip.size == 0
-      flash[:error] = 'New URL cannot be empty'
-      return smart_redirect('/admin/index', false)
+      return render :text => 'New URL cannot be empty'
     end
     redirect = Redirect.create(:from => params[:redirect_from].strip, :to => params[:redirect_to].strip)
     redirect.save!
-    flash[:notice] = 'New redirect created.'
     return smart_redirect('/admin/index', false)
   end
 
@@ -219,7 +212,6 @@ class HomeController < ApplicationController
   def delete_redirect_action
     redirect = Redirect.find(params[:redirect_id].to_i)
     redirect.destroy
-    flash[:notice] = 'The redirect has been deleted.'
     return smart_redirect('/admin/index', false)
   end
 
@@ -235,7 +227,6 @@ class HomeController < ApplicationController
     if params[:password]
       if Digest::SHA256.hexdigest(params[:password]) == APP_PASSWORD_HASH
         session[:login_time] = DateTime.now
-        flash[:notice] = 'You are now logged in.'
         return smart_redirect('/admin/index', false)
       end
     end
