@@ -213,7 +213,7 @@ html, body {
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Palatino", "Palatino Linotype", "Lato", sans-serif;
   font-weight: 400;
   font-size: 1em;
   line-height: $line-height;
@@ -258,6 +258,7 @@ a {
 }
 
 a.tag {
+  font-family: "Lato", sans-serif;
   display: inline-block;
   padding: 0px 4px;
   background-color: $color-anchor;
@@ -293,6 +294,7 @@ ul, ol {
 }
 
 h2, h3, h4, h5, h6 {
+  font-family: "Lato", sans-serif;
   font-weight: 900;
   text-align: left;
   margin: $line-height 0;
@@ -381,6 +383,7 @@ ul.pagination {
     text-align: center;
     margin: 8px 2px 8px 0;
     background-color: #f3f3f3;
+    font-family: "Lato", sans-serif;
 
     &:last-child {
       margin-right: 0;
@@ -446,6 +449,7 @@ input[type=text], input[type=password], textarea {
 }
 
 input[type=submit], .button-link {
+  font-family: "Lato", sans-serif;
   border-style: none;
   padding: 0 16px;
   color: #fff;
@@ -491,6 +495,7 @@ form {
   line-height: $header-height;
   background-color: #fafafa;
   color: #666;
+  font-family: "Lato", sans-serif;
   font-size: 0.85em;
 
   #title {
@@ -619,6 +624,7 @@ div.post-separator {
   color: $color-muted;
   text-align: center;
   background-color: #fafafa;
+  font-family: "Lato", sans-serif;
   font-size: 0.85em;
 
   #footer .p {
