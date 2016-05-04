@@ -20,12 +20,6 @@
       <div id="header">
         <div class="container">
           <div class="row">
-            <div id="title" class="span4 phone-hidden">
-              <h1>
-                <a href="<%= normalize_path('/', :no_cache => is_logged_in) -%>" id="title-link">Stephan Boyer</a>
-                <%= content_for :nav %>
-              </h1>
-            </div>
             <div id="nav" class="span8">
               <a <%= if (defined? @tag_name) && @tag_name == 'home' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/', :no_cache => is_logged_in) -%>">Home</a><span class="hidden">
               </span><a <%= if (defined? @tag_name) && @tag_name == 'articles' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/articles', :no_cache => is_logged_in) -%>">Articles</a><span class="hidden">
@@ -33,6 +27,10 @@
               </span><a <%= if (defined? @tag_name) && @tag_name == 'music' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/music', :no_cache => is_logged_in) -%>">Music</a><span class="hidden">
               </span><a <%= if (defined? @tag_name) && @tag_name == 'about' then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/about', :no_cache => is_logged_in) -%>">About</a><% if is_logged_in -%><span class="hidden">
               </span><a <%= if params[:action].to_sym == :admin then 'class="active"'.html_safe else '' end -%> href="<%= normalize_path('/admin/index', :no_cache => true) -%>">Admin</a><% end -%>
+            </div>
+            <div id="header-follow" class="span4 phone-hidden">
+              <a href="https://twitter.com/stepchowfun" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @stepchowfun</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             </div>
           </div>
         </div>

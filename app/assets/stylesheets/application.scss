@@ -493,38 +493,7 @@ form {
   color: #666;
   font-size: 0.85em;
 
-  #title {
-    @media (max-width: ($stack-width - 1)) {
-      text-align: center;
-    }
-
-    h1 {
-      font-size: inherit;
-      font-weight: 400;
-      text-transform: inherit;
-      line-height: inherit;
-      margin: 0;
-
-      a {
-        display: inline-block;
-        color: inherit;
-        &:hover {
-          color: $color-anchor-hover;
-          text-decoration: none;
-        }
-
-        &#title-link {
-          &:hover {
-            color: $color-anchor-hover;
-          }
-        }
-      }
-    }
-  }
-
   #nav {
-    text-align: right;
-
     @media (max-width: ($stack-width - 1)) {
       text-align: center;
     }
@@ -535,7 +504,7 @@ form {
       padding: 0 12px;
       position: relative;
       top: 0;
-      left: 12px;
+      left: -12px;
 
       @media (max-width: ($stack-width - 1)) {
         & {
@@ -548,6 +517,14 @@ form {
         color: $color-anchor-hover;
         text-decoration: none;
       }
+    }
+  }
+
+  #header-follow {
+    text-align: right;
+
+    iframe {
+      vertical-align: middle;
     }
   }
 }
