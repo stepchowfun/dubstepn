@@ -21,7 +21,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-selector-tag,
 .hljs-subst {
   color: #333;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .hljs-number,
@@ -41,24 +41,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-section,
 .hljs-selector-id {
   color: #900;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .hljs-subst {
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .hljs-type,
 .hljs-class .hljs-title {
   color: #458;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .hljs-tag,
 .hljs-name,
 .hljs-attribute {
   color: #000080;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .hljs-regexp,
@@ -78,7 +78,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-meta {
   color: #999;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .hljs-deletion {
@@ -94,5 +94,5 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .hljs-strong {
-  font-weight: bold;
+  font-weight: 700;
 }
