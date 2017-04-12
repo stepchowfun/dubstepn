@@ -515,10 +515,6 @@ form {
   font-size: 0.85em;
 
   #nav {
-    @media (max-width: ($stack-width - 1)) {
-      text-align: center;
-    }
-
     a {
       display: inline-block;
       color: inherit;

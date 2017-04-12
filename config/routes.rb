@@ -63,6 +63,9 @@ Rails.application.routes.draw do
   get "/robots.txt" => "home#robots", :format => false
   get "/sitemap" => "home#sitemap", :format => false
 
+  # my dotfiles
+  get "/dotfiles" => "home#dotfiles", :format => false
+
   # syndication
   get "/rss/home" => redirect("/rss"), :format => false
   get "/rss" => "home#feed", :type => :rss, :format => false

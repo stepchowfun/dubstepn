@@ -2,7 +2,7 @@ include ApplicationHelper
 
 class HomeController < ApplicationController
   # whitelist of actions that are viewable to the public
-  public_actions = [:catch_all, :posts_for_tag, :post, :robots, :sitemap, :feed, :login, :login_action]
+  public_actions = [:catch_all, :posts_for_tag, :post, :robots, :sitemap, :feed, :dotfiles, :login, :login_action]
   before_action :require_login, :except => public_actions
 
   # make this method available in views
@@ -91,6 +91,15 @@ class HomeController < ApplicationController
   def feed
     tag = params[:tag] || 'home'
     return render_feed(params[:type].to_sym, tag)
+  end
+
+  # render a shell script to install my dotfiles
+  def dotfiles
+    return render :text => \
+      'rm -rf /tmp/dotfiles && ' \
+      'git clone https://github.com/stepchowfun/dotfiles.git /tmp/dotfiles && ' \
+      '/tmp/dotfiles/install.sh && ' \
+      'rm -rf /tmp/dotfiles'
   end
 
   # admin page
