@@ -96,10 +96,12 @@ class HomeController < ApplicationController
   # render a shell script to install my dotfiles
   def dotfiles
     return render :text => \
+      '(' \
       'rm -rf /tmp/dotfiles && ' \
       'git clone https://github.com/stepchowfun/dotfiles.git /tmp/dotfiles && ' \
       '/tmp/dotfiles/install.sh && ' \
-      'rm -rf /tmp/dotfiles'
+      'rm -rf /tmp/dotfiles' \
+      ')'
   end
 
   # admin page
