@@ -48,6 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    crass (1.0.5)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     debug_inspector (0.0.2)
