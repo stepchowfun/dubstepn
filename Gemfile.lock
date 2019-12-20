@@ -79,7 +79,7 @@ GEM
     nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
     pg (0.18.4)
-    rack (1.6.11)
+    rack (1.6.12)
     rack-rewrite (1.5.1)
     rack-test (0.6.3)
       rack (>= 1.0)
